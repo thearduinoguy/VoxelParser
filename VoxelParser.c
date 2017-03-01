@@ -258,13 +258,20 @@ void printNewArray()
 void createNewFile()
 {
 	    FILE* fp;
-
+	    int newLineCount = 0;
 	    fp = fopen("OUTPUT.txt", "w+");
 	    fprintf(fp, "{ \n");
 	    for(int index = 0; index < newSize; index++)
 	    {
 			fprintf(fp, "%d", newArray[index]);
 			fprintf(fp, ", ");
+			newLineCount++;
+			if (newLineCount>16) 
+			{
+				fprintf(fp, "\n");
+				newLineCount = 0;
+			}
+			
 	    }
 	    fprintf(fp, " }");
 	    fclose(fp);
